@@ -28,9 +28,13 @@ namespace TvCinema.MovieApi.Service.Application.Services
         {
             try
             {
-                var list = await _movieRepository.GetMovies(filter.GetClause(), _page, _size);
-                var totalItems = await _movieRepository.GetTotalItems(filter.GetClause());
+               
 
+                _logger.LogInformation($"Get list movies with page:{_page}, size:{_size}, clause:{filter.GetClause()}");
+                var list = await _movieRepository.GetMovies(filter.GetClause(), _page, _size);
+                _logger.LogInformation($"Get total items movies with clause:{filter.GetClause()}");
+                var totalItems = await _movieRepository.GetTotalItems(filter.GetClause());
+                _logger.LogInformation($"Get pagination list");
                 return new Pagination<MovieDto>()
                 {
                     CurrentPage = _page,

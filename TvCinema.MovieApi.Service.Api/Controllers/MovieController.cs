@@ -11,6 +11,7 @@ namespace TvCinema.MovieApi.Service.Api.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;
+        private readonly ILogger<MovieController> _logger;
 
         public MovieController(IMovieService movieService)
         {
@@ -25,7 +26,9 @@ namespace TvCinema.MovieApi.Service.Api.Controllers
         {
             try
             {
+                _logger.LogInformation($"*****Init Get Movie List*****");
                 var result = await _movieService.Get(filter, _page, _size);
+                _logger.LogInformation($"*****End Get Movie List*****");
                 return Ok(result);
             }
             catch (Exception ex)
