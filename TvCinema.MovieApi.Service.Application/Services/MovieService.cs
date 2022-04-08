@@ -30,6 +30,7 @@ namespace TvCinema.MovieApi.Service.Application.Services
             {
                 var list = await _movieRepository.GetMovies(filter.GetClause(), _page, _size);
                 var totalItems = await _movieRepository.GetTotalItems(filter.GetClause());
+                var listDto = _mapper.Map<IEnumerable<MovieDto>>(list);
 
                 return new Pagination<MovieDto>()
                 {
@@ -37,7 +38,7 @@ namespace TvCinema.MovieApi.Service.Application.Services
                     TotalItems = totalItems,
                     TotalPages = totalItems % _size == 0 ? totalItems / _size : (totalItems / _size) + 1,
                     Filter = filter,
-                    Data = _mapper.Map<IEnumerable<MovieDto>>(list)
+                    Data = listDto
                 };
             }
             catch (Exception exception)
