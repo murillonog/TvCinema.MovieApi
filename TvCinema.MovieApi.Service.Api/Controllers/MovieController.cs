@@ -13,9 +13,11 @@ namespace TvCinema.MovieApi.Service.Api.Controllers
         private readonly IMovieService _movieService;
         private readonly ILogger<MovieController> _logger;
 
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieService movieService, 
+            ILogger<MovieController> logger)
         {
             _movieService = movieService;
+            _logger = logger;
         }
 
         [HttpGet]
