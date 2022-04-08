@@ -43,7 +43,7 @@ namespace TvCinema.MovieApi.Service.Application.Services
             catch (Exception exception)
             {
                 _logger.LogError(exception.Message);
-                throw;
+                return new Pagination<MovieDto>();
             }
         }
 
@@ -57,7 +57,7 @@ namespace TvCinema.MovieApi.Service.Application.Services
             catch (Exception exception)
             {
                 _logger.LogError(exception.Message);
-                throw;
+                return new List<CarouselBannerDto>();
             }
         }
     }
