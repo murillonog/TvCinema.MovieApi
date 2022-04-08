@@ -6,7 +6,7 @@ namespace TvCinema.MovieApi.Service.CrossCutting.IoC
 {
     public static class ServiceConfig
     {
-        public static void AddServices(this IServiceCollection services)
+        public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IMovieService, MovieService>();
         }

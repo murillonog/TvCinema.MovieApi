@@ -6,7 +6,7 @@ namespace TvCinema.MovieApi.Service.CrossCutting.IoC
 {
     public static class MappingConfig
     {
-        public static void AddMapper(this IServiceCollection services)
+        public static void ConfigureMapper(this IServiceCollection services)
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {

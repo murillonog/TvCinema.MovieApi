@@ -4,26 +4,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDataBase(builder.Configuration);
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddMapper();
-builder.Services.AddServices();
-builder.Services.AddRepositories();
+
+builder.Services.ConfigureDataBase(builder.Configuration);
+builder.Services.ConfigureMapper();
+builder.Services.ConfigureServices();
+builder.Services.ConfigureRepository();
+builder.Services.ConfigureSwagger();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
 app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.RoutePrefix = "swagger";
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movies API v1");
-});
-
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

@@ -5,10 +5,13 @@ using TvCinema.MovieApi.Service.Infrastructure.Context;
 
 namespace TvCinema.MovieApi.Service.CrossCutting.IoC
 {
-    public static class DataBaseConfig
+    public static class DependencyResolver
     {
-        public static void AddDataBase(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDataBase(this IServiceCollection services, IConfiguration configuration)
         {
+            //services.AddDbContext<ApplicationDbContext>(options => 
+            //    options.UseInMemoryDatabase("DBMovies"));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("ConnectionMovies")));
         }
