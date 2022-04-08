@@ -10,7 +10,7 @@ namespace TvCinema.MovieApi.Service.CrossCutting.IoC
         public static void AddDataBase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DBMovies")));
+                options.UseNpgsql(configuration.GetConnectionString("ConnectionMovies")));
         }
     }
 }

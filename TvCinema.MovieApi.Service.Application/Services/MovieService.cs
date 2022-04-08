@@ -4,7 +4,6 @@ using TvCinema.MovieApi.Service.Application.DTOs;
 using TvCinema.MovieApi.Service.Application.Filters;
 using TvCinema.MovieApi.Service.Application.Interfaces;
 using TvCinema.MovieApi.Service.Application.Util;
-using TvCinema.MovieApi.Service.Domain.Entities;
 using TvCinema.MovieApi.Service.Domain.Interfaces;
 
 namespace TvCinema.MovieApi.Service.Application.Services
@@ -25,20 +24,20 @@ namespace TvCinema.MovieApi.Service.Application.Services
             _movieRepository = movieRepository;
         }
 
-        public async Task<Pagination<Movie>> Get(MovieFilters filter, int _page, int _size)
+        public async Task<Pagination<MovieDto>> Get(MovieFilters filter, int _page, int _size)
         {
             try
             {
                 var list = await _movieRepository.GetMovies(filter.GetClause(), _page, _size);
                 var totalItems = await _movieRepository.GetTotalItems(filter.GetClause());
 
-                return new Pagination<Movie>()
+                return new Pagination<MovieDto>()
                 {
                     CurrentPage = _page,
                     TotalItems = totalItems,
                     TotalPages = totalItems % _size == 0 ? totalItems / _size : (totalItems / _size) + 1,
                     Filter = filter,
-                    Data = list
+                    Data = _mapper.Map<IEnumerable<MovieDto>>(list)
                 };
             }
             catch (Exception exception)
