@@ -9,7 +9,6 @@ namespace TvCinema.MovieApi.Service.CrossCutting.Mapping
         public DomainToDtoMappingProfile()
         {
             CreateMap<Movie, MovieDto>().ReverseMap();
-            CreateMap<IEnumerable<Movie>, IEnumerable<MovieDto>>().ReverseMap();
         }
     }
 }

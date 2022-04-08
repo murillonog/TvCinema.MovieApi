@@ -15,7 +15,7 @@
         public bool Watched { get; set; }
         public bool Favorite { get; set; }
         public bool List { get; set; }
-        public DateTime? DateFile { get; set; }
+        public string? DateFile { get; set; }
 
         //Details
         public string? OriginalTitle { get; set; }
